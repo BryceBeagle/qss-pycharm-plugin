@@ -1,0 +1,2 @@
+qss-pycharm-plugin
+==================

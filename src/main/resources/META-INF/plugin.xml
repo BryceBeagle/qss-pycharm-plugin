@@ -1,23 +1,17 @@
-<idea-plugin>
+<idea-plugin url="https://github.com/BryceBeagle/qss-pycharm-plugin">
     <id>com.ignormies.qss.qss-pycharm-plugin</id>
-    <name>Plugin display name here</name>
-    <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+    <name>QSS</name>
+
+    <!-- TODO: Add email and website -->
+    <vendor>ignormies</vendor>
 
     <description><![CDATA[
-    Enter short description for your plugin here.<br>
-    <em>most HTML tags may be used</em>
+    Plugin will add proper grammar checking, syntax highlighting, and suggestions for Qt Stylesheet files.<br>
+    In PyCharm and IDEs with the Python plugin, it may support custom Class selectors by analyzing the source for class
+    names.
     ]]></description>
 
-    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
-         on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
 
-    <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
-    </extensions>
-
-    <actions>
-        <!-- Add your actions here -->
-        <action id="MyAction" class="actions.MyAction" text="_MyAction" description="MyAction"/>
-    </actions>
+    <extensions defaultExtensionNs="com.intellij"/>
 </idea-plugin>

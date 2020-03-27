@@ -13,5 +13,9 @@
 
     <depends>com.intellij.modules.platform</depends>
 
-    <extensions defaultExtensionNs="com.intellij"/>
+    <extensions defaultExtensionNs="com.intellij">
+        <fileType name="QSS file" implementationClass="ignormies.qss.QSSFileType"
+                  fieldName="INSTANCE" language="QSS" extensions="qss"/>
+    </extensions>
+
 </idea-plugin>

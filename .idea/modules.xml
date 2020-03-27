@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/qss-pycharm-plugin.iml" filepath="$PROJECT_DIR$/.idea/qss-pycharm-plugin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/qss-pycharm-plugin.main.iml" filepath="$PROJECT_DIR$/.idea/modules/qss-pycharm-plugin.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/qss-pycharm-plugin.test.iml" filepath="$PROJECT_DIR$/.idea/modules/qss-pycharm-plugin.test.iml" />
     </modules>
   </component>
 </project>

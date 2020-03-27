@@ -4,7 +4,7 @@ plugins {
     kotlin("jvm") version "1.3.70"
 }
 
-group = "com.ignormies.qss"
+group = "ignormies.qss"
 version = "0.1"
 
 repositories {

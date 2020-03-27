@@ -1,5 +1,5 @@
 <idea-plugin url="https://github.com/BryceBeagle/qss-pycharm-plugin">
-    <id>com.ignormies.qss.qss-pycharm-plugin</id>
+    <id>ignormies.qss.qss-pycharm-plugin</id>
     <name>QSS</name>
 
     <!-- TODO: Add email and website -->

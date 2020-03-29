@@ -3,3 +3,7 @@
 /gradlew.bat
 /.gradle/
 /build/
+
+# JFlex library and skeleton
+/jflex-*.jar
+/idea-flex.skeleton

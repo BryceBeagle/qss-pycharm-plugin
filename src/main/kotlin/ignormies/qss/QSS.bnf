@@ -1,0 +1,22 @@
+{
+    parserClass="ignormies.qss.parser.QSSParser"
+
+    extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+    psiClassPrefix="QSS"
+    psiImplClassSuffix="Impl"
+    psiPackage="ignormies.qss.psi"
+    psiImplPackage="ignormies.qss.psi.impl"
+
+    elementTypeHolderClass="ignormies.qss.psi.QSSTypes"
+    elementTypeClass="ignormies.qss.psi.QSSElementType"
+    tokenTypeClass="ignormies.qss.psi.QSSTokenType"
+
+    psiImplUtilClass="ignormies.qss.psi.impl.QSSPsiImplUtil"
+}
+
+qssFile ::= item_*
+
+private item_ ::= (property|COMMENT|CRLF)
+
+property ::= (KEY? SEPARATOR VALUE?) | KEY

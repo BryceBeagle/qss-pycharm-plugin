@@ -9,7 +9,7 @@ object QSSFileType : LanguageFileType(QSSLanguage) {
     }
 
     override fun getName(): String {
-        return "QSS file"
+        return "QSS"
     }
 
     override fun getDefaultExtension(): String {

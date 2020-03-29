@@ -11,6 +11,9 @@ repositories {
     mavenCentral()
 }
 
+// Not sure if this is the best way to do this. Lets the generated code get used
+sourceSets["main"].java.srcDir("src/main/gen")
+
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
     testCompile("junit", "junit", "4.12")

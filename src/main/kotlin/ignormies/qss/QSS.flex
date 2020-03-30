@@ -1,6 +1,3 @@
-// Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0
-// license that can be found in the LICENSE file.
-
 package ignormies.qss;
 
 import com.intellij.lexer.FlexLexer;
@@ -16,27 +13,32 @@ import com.intellij.psi.TokenType;
 %function advance
 %type IElementType
 
+EOL=\R
+WHITE_SPACE=\s+
 
-CRLF=\R
-WHITE_SPACE=[\ \n\t\f]
-FIRST_VALUE_CHARACTER=[^ \n\f\\] | "\\"{CRLF} | "\\".
-VALUE_CHARACTER=[^\n\f\\] | "\\"{CRLF} | "\\".
-END_OF_LINE_COMMENT=("#"|"!")[^\r\n]*
-SEPARATOR=[:=]
-KEY_CHARACTER=[^:=\ \n\t\f\\] | "\\ "
+IDENTIFIER=[a-zA-Z_]\w*
 
-%state WAITING_VALUE
+SEMICOLON=";"
+OPEN_BRACE="{"
+CLOSE_BRACE="}"
+
+%state DECLARATION
 
 %%
 
-<YYINITIAL> {END_OF_LINE_COMMENT}                           { yybegin(YYINITIAL); return QSSTypes.COMMENT; }
-<YYINITIAL> {KEY_CHARACTER}+                                { yybegin(YYINITIAL); return QSSTypes.KEY; }
-<YYINITIAL> {SEPARATOR}                                     { yybegin(WAITING_VALUE); return QSSTypes.SEPARATOR; }
+<YYINITIAL> {
+    {IDENTIFIER}                                                   {return QSSTypes.CLASS_NAME;}
+    {OPEN_BRACE}                                                   {yybegin(DECLARATION); return QSSTypes.OPEN_BRACE;}
+}
 
-<WAITING_VALUE> {CRLF}({CRLF}|{WHITE_SPACE})+               { yybegin(YYINITIAL); return TokenType.WHITE_SPACE; }
-<WAITING_VALUE> {WHITE_SPACE}+                              { yybegin(WAITING_VALUE); return TokenType.WHITE_SPACE; }
-<WAITING_VALUE> {FIRST_VALUE_CHARACTER}{VALUE_CHARACTER}*   { yybegin(YYINITIAL); return QSSTypes.VALUE; }
+<DECLARATION> {
+    {WHITE_SPACE}                                                  {}
+    {IDENTIFIER} / {WHITE_SPACE}? ({SEMICOLON} | {CLOSE_BRACE})    {return QSSTypes.PROPERTY;}
+    {IDENTIFIER}                                                   {}
+    {SEMICOLON}                                                    {return QSSTypes.SEMICOLON;}
+    {CLOSE_BRACE}                                                  {yybegin(YYINITIAL); return QSSTypes.CLOSE_BRACE;}
+}
 
-({CRLF}|{WHITE_SPACE})+                                     { yybegin(YYINITIAL); return TokenType.WHITE_SPACE; }
+{WHITE_SPACE}                                                      { return TokenType.WHITE_SPACE; }
 
-[^]                                                         { return TokenType.BAD_CHARACTER; }
+[^]                                                                { return TokenType.BAD_CHARACTER; }

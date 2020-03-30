@@ -19,7 +19,7 @@ class QSSParserDefinition : ParserDefinition {
 
     companion object {
         var WHITE_SPACES = TokenSet.create(TokenType.WHITE_SPACE)
-        var COMMENTS = TokenSet.create(QSSTypes.COMMENT)
+//        var COMMENTS = TokenSet.create(QSSTypes.COMMENT)
 
         var FILE = IFileElementType(QSSLanguage)
     }
@@ -33,7 +33,7 @@ class QSSParserDefinition : ParserDefinition {
     }
 
     override fun getCommentTokens(): TokenSet {
-        return COMMENTS
+        return TokenSet.EMPTY
     }
 
     override fun getStringLiteralElements(): TokenSet {

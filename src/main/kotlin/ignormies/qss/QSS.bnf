@@ -13,10 +13,35 @@
     tokenTypeClass="ignormies.qss.psi.QSSTokenType"
 
     psiImplUtilClass="ignormies.qss.psi.impl.QSSPsiImplUtil"
+
+    tokens = [
+       SEMICOLON=";"
+       OPEN_BRACE="{"
+       CLOSE_BRACE="}"
+    ]
 }
 
-qssFile ::= item_*
+file ::= style_rule*
 
-private item_ ::= (property|COMMENT|CRLF)
+style_rule ::= selector_list declaration_block
+selector_list ::= CLASS_NAME+
 
-property ::= (KEY? SEPARATOR VALUE?) | KEY
+declaration_block ::= OPEN_BRACE declaration CLOSE_BRACE
+declaration ::= PROPERTY (SEMICOLON PROPERTY)*
+
+
+
+
+// IN PROGRESS:
+
+//selector ::= selector_ selector*
+//selector_ ::= universal_selector | type_selector | property_selector | class_selector
+//              | id_selector | descendent_selector | child_selector
+//
+//universal_selector ::= "*"
+//type_selector ::= CLASS_TYPE
+//property_selector ::= type_selector property*  // TODO
+//class_selector ::= "." selector_
+//id_selector ::= type_selector? "#" selector_
+//descendent_selector ::= type_selector selector_
+//child_selector ::= type_selector ">" selector_

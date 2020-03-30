@@ -24,6 +24,9 @@ intellij {
     pluginName = "QSS"
     version = "LATEST-EAP-SNAPSHOT"
     type = "PY"
+    setPlugins(
+        "PsiViewer:201.6251.22-EAP-SNAPSHOT.3"
+    )
 }
 configure<JavaPluginConvention> {
     sourceCompatibility = JavaVersion.VERSION_1_8

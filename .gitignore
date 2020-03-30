@@ -7,3 +7,6 @@
 # JFlex library and skeleton
 /jflex-*.jar
 /idea-flex.skeleton
+
+# Generated source files
+/src/main/gen/

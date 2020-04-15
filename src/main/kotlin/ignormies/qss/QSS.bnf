@@ -24,11 +24,12 @@
 file ::= style_rule*
 
 style_rule ::= selector_list declaration_block
-selector_list ::= CLASS_NAME+
+selector_list ::= IDENTIFIER+
 
-declaration_block ::= OPEN_BRACE declaration CLOSE_BRACE
-declaration ::= PROPERTY (SEMICOLON PROPERTY)*
-
+declaration_block ::= OPEN_BRACE declaration_list CLOSE_BRACE
+declaration_list ::= declaration (SEMICOLON declaration)*
+declaration ::= property COLON EXPRESSION
+property ::= IDENTIFIER
 
 
 

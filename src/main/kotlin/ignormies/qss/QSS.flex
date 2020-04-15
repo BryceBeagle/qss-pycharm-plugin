@@ -21,9 +21,13 @@ COLON=":"
 SEMICOLON=";"
 OPEN_BRACE="{"
 CLOSE_BRACE="}"
+OPEN_BRACKET="["
+CLOSE_BRACKET="]"
+EQ_SIGN="="
 PLUS_SIGN="+"
 GT_SIGN=">"
 
+%state ATTRIBUTE
 %state DECLARATION
 %state EXPRESSION
 
@@ -34,6 +38,13 @@ GT_SIGN=">"
     {OPEN_BRACE}                                                   {yybegin(DECLARATION); return QSSTypes.OPEN_BRACE;}
     {PLUS_SIGN}                                                    {return QSSTypes.PLUS_SIGN;}
     {GT_SIGN}                                                      {return QSSTypes.GT_SIGN;}
+    {OPEN_BRACKET}                                                 {yybegin(ATTRIBUTE); return QSSTypes.OPEN_BRACKET;}
+}
+
+<ATTRIBUTE> {
+    {IDENTIFIER}                                                   {return QSSTypes.IDENTIFIER;}
+    {EQ_SIGN}                                                      {return QSSTypes.EQ_SIGN;}
+    {CLOSE_BRACKET}                                                {yybegin(YYINITIAL); return QSSTypes.CLOSE_BRACKET;}
 }
 
 <DECLARATION> {

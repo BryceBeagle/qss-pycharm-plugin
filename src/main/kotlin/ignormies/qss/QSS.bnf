@@ -25,8 +25,13 @@ file ::= style_rule*
 
 style_rule ::= selector_list declaration_block
 
-selector_list ::= selector (combinator_selector | selector)*
-selector ::= IDENTIFIER
+selector_list ::= selector selector*
+private selector ::= property_selector | combinator_selector | simple_selector
+simple_selector ::= IDENTIFIER
+
+property_selector ::= simple_selector OPEN_BRACKET attribute CLOSE_BRACKET
+attribute ::= IDENTIFIER EQ_SIGN (IDENTIFIER | STRING)
+
 private combinator_selector ::= child_selector | adjacent_selector
 child_selector ::= GT_SIGN selector
 adjacent_selector ::= PLUS_SIGN selector

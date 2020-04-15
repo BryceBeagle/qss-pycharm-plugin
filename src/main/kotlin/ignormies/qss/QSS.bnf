@@ -25,9 +25,11 @@ file ::= style_rule*
 
 style_rule ::= selector_list declaration_block
 
-selector_list ::= selector (combinator? selector)?
+selector_list ::= selector (combinator_selector | selector)*
 selector ::= IDENTIFIER
-combinator ::= PLUS_SIGN | GT_SIGN
+private combinator_selector ::= child_selector | adjacent_selector
+child_selector ::= GT_SIGN selector
+adjacent_selector ::= PLUS_SIGN selector
 
 declaration_block ::= OPEN_BRACE declaration_list CLOSE_BRACE
 declaration_list ::= declaration (SEMICOLON declaration)*

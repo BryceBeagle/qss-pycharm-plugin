@@ -21,6 +21,8 @@ COLON=":"
 SEMICOLON=";"
 OPEN_BRACE="{"
 CLOSE_BRACE="}"
+PLUS_SIGN="+"
+GT_SIGN=">"
 
 %state DECLARATION
 %state EXPRESSION
@@ -30,6 +32,8 @@ CLOSE_BRACE="}"
 <YYINITIAL> {
     {IDENTIFIER}                                                   {return QSSTypes.IDENTIFIER;}
     {OPEN_BRACE}                                                   {yybegin(DECLARATION); return QSSTypes.OPEN_BRACE;}
+    {PLUS_SIGN}                                                    {return QSSTypes.PLUS_SIGN;}
+    {GT_SIGN}                                                      {return QSSTypes.GT_SIGN;}
 }
 
 <DECLARATION> {

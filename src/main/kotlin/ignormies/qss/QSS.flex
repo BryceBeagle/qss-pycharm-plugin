@@ -18,6 +18,7 @@ WHITE_SPACE=\s+
 IDENTIFIER=[a-zA-Z_]\w*
 NUMBER=[-+]?[0-9]*\.?[0-9]*
 PERCENTAGE={NUMBER}%
+ANGLE={NUMBER}(deg|rad|grad)
 
 COLON=":"
 SEMICOLON=";"
@@ -58,6 +59,7 @@ GT_SIGN=">"
 <EXPRESSION> {
     {NUMBER}                                     {return QSSTypes.NUMBER;}
     {PERCENTAGE}                                 {return QSSTypes.PERCENTAGE;}
+    {ANGLE}                                      {return QSSTypes.ANGLE;}
     {IDENTIFIER}                                 {return QSSTypes.IDENTIFIER;}
     {SEMICOLON}                                  {yybegin(DECLARATION); return QSSTypes.SEMICOLON;}
     {CLOSE_BRACE}                                {yybegin(YYINITIAL); return QSSTypes.CLOSE_BRACE;}

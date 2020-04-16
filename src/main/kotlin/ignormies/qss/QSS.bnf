@@ -38,9 +38,11 @@ adjacent_selector ::= PLUS_SIGN selector
 
 declaration_block ::= OPEN_BRACE declaration_list CLOSE_BRACE
 declaration_list ::= declaration (SEMICOLON declaration)*
-declaration ::= property COLON EXPRESSION
+declaration ::= property COLON expression
 property ::= IDENTIFIER
 
+expression ::= term (operator? term)*
+term ::= NUMBER | PERCENTAGE | IDENTIFIER
 
 
 // IN PROGRESS:

@@ -16,6 +16,8 @@ import com.intellij.psi.TokenType;
 WHITE_SPACE=\s+
 
 IDENTIFIER=[a-zA-Z_]\w*
+NUMBER=[-+]?[0-9]*\.?[0-9]*
+PERCENTAGE={NUMBER}%
 
 COLON=":"
 SEMICOLON=";"
@@ -34,31 +36,33 @@ GT_SIGN=">"
 %%
 
 <YYINITIAL> {
-    {IDENTIFIER}                                                   {return QSSTypes.IDENTIFIER;}
-    {OPEN_BRACE}                                                   {yybegin(DECLARATION); return QSSTypes.OPEN_BRACE;}
-    {PLUS_SIGN}                                                    {return QSSTypes.PLUS_SIGN;}
-    {GT_SIGN}                                                      {return QSSTypes.GT_SIGN;}
-    {OPEN_BRACKET}                                                 {yybegin(ATTRIBUTE); return QSSTypes.OPEN_BRACKET;}
+    {IDENTIFIER}                                 {return QSSTypes.IDENTIFIER;}
+    {OPEN_BRACE}                                 {yybegin(DECLARATION); return QSSTypes.OPEN_BRACE;}
+    {PLUS_SIGN}                                  {return QSSTypes.PLUS_SIGN;}
+    {GT_SIGN}                                    {return QSSTypes.GT_SIGN;}
+    {OPEN_BRACKET}                               {yybegin(ATTRIBUTE); return QSSTypes.OPEN_BRACKET;}
 }
 
 <ATTRIBUTE> {
-    {IDENTIFIER}                                                   {return QSSTypes.IDENTIFIER;}
-    {EQ_SIGN}                                                      {return QSSTypes.EQ_SIGN;}
-    {CLOSE_BRACKET}                                                {yybegin(YYINITIAL); return QSSTypes.CLOSE_BRACKET;}
+    {IDENTIFIER}                                 {return QSSTypes.IDENTIFIER;}
+    {EQ_SIGN}                                    {return QSSTypes.EQ_SIGN;}
+    {CLOSE_BRACKET}                              {yybegin(YYINITIAL); return QSSTypes.CLOSE_BRACKET;}
 }
 
 <DECLARATION> {
-    {IDENTIFIER}                                                   {return QSSTypes.IDENTIFIER;}
-    {COLON}                                                        {yybegin(EXPRESSION); return QSSTypes.COLON;}
-    {CLOSE_BRACE}                                                  {yybegin(YYINITIAL); return QSSTypes.CLOSE_BRACE;}
+    {IDENTIFIER}                                 {return QSSTypes.IDENTIFIER;}
+    {COLON}                                      {yybegin(EXPRESSION); return QSSTypes.COLON;}
+    {CLOSE_BRACE}                                {yybegin(YYINITIAL); return QSSTypes.CLOSE_BRACE;}
 }
 
 <EXPRESSION> {
-    {IDENTIFIER} / {WHITE_SPACE}? ({SEMICOLON} | {CLOSE_BRACE})    {return QSSTypes.EXPRESSION;}
-    {SEMICOLON}                                                    {yybegin(DECLARATION); return QSSTypes.SEMICOLON;}
-    {CLOSE_BRACE}                                                  {yybegin(YYINITIAL); return QSSTypes.CLOSE_BRACE;}
+    {NUMBER}                                     {return QSSTypes.NUMBER;}
+    {PERCENTAGE}                                 {return QSSTypes.PERCENTAGE;}
+    {IDENTIFIER}                                 {return QSSTypes.IDENTIFIER;}
+    {SEMICOLON}                                  {yybegin(DECLARATION); return QSSTypes.SEMICOLON;}
+    {CLOSE_BRACE}                                {yybegin(YYINITIAL); return QSSTypes.CLOSE_BRACE;}
 }
 
-{WHITE_SPACE}                                                      { return TokenType.WHITE_SPACE; }
+{WHITE_SPACE}                                    { return TokenType.WHITE_SPACE; }
 
-[^]                                                                { return TokenType.BAD_CHARACTER; }
+[^]                                              { return TokenType.BAD_CHARACTER; }

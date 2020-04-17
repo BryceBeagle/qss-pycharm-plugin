@@ -66,6 +66,14 @@ tasks {
         dependsOn(generateQSSLexer)
         kotlinOptions.jvmTarget = "1.8"
     }
+
+    withType<Test> {
+        useJUnitPlatform()
+        doFirst {
+            systemProperty("idea.home.path", project.property("idea.home.path")!!)
+        }
+    }
+
 }
 
 tasks.getByName<org.jetbrains.intellij.tasks.PatchPluginXmlTask>("patchPluginXml") {

@@ -13,7 +13,7 @@
           <option value="test" />
         </list>
       </option>
-      <option name="vmOptions" value="-Pidea.home.path=$PROJECT_DIR$/../../intellij-community" />
+      <option name="vmOptions" value="" />
     </ExternalSystemSettings>
     <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
     <method v="2" />

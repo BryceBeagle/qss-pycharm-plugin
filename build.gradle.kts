@@ -1,10 +1,11 @@
 import org.jetbrains.grammarkit.tasks.GenerateLexer
 import org.jetbrains.grammarkit.tasks.GenerateParser
+import org.jetbrains.intellij.tasks.PatchPluginXmlTask
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("org.jetbrains.intellij") version "0.4.18"
     id("org.jetbrains.grammarkit") version "2020.1"
-    java
     kotlin("jvm") version "1.3.70"
 }
 
@@ -17,6 +18,7 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
+    testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
@@ -61,7 +63,7 @@ tasks {
         dependsOn(generateQSSLexer)
     }
 
-    compileKotlin {
+    withType<KotlinCompile> {
         dependsOn(generateQSSParser)
         dependsOn(generateQSSLexer)
         kotlinOptions.jvmTarget = "1.8"
@@ -69,13 +71,14 @@ tasks {
 
     withType<Test> {
         useJUnitPlatform()
+        testLogging.showStandardStreams = true
         doFirst {
             systemProperty("idea.home.path", project.property("idea.home.path")!!)
         }
     }
 
-}
+    getByName<PatchPluginXmlTask>("patchPluginXml") {
+        changeNotes("""Initial release""")
+    }
 
-tasks.getByName<org.jetbrains.intellij.tasks.PatchPluginXmlTask>("patchPluginXml") {
-    changeNotes("""Initial release""")
 }

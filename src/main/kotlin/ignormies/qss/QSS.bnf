@@ -30,7 +30,10 @@ style_rule ::= selector_list declaration_block
 // #############################################################################
 
 selector_list ::= selector selector*
-private selector ::= property_selector | combinator_selector | simple_selector
+private selector ::= universal_selector | property_selector | combinator_selector | simple_selector
+
+// Universal selector
+universal_selector ::= ASTERISK
 
 // Simple selector
 simple_selector ::= IDENTIFIER

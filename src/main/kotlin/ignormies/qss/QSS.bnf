@@ -37,7 +37,7 @@ child_selector ::= GT_SIGN selector
 adjacent_selector ::= PLUS_SIGN selector
 
 declaration_block ::= OPEN_BRACE declaration_list CLOSE_BRACE
-declaration_list ::= declaration (SEMICOLON declaration)*
+declaration_list ::= declaration? (SEMICOLON declaration?)*
 declaration ::= property COLON expression
 property ::= IDENTIFIER
 

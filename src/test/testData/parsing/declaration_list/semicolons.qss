@@ -1,0 +1,30 @@
+QWidget {
+}
+
+QWidget {
+    ;
+}
+
+QWidget {
+    ;;;
+}
+
+QWidget {
+    border: none
+}
+
+QWidget {
+    border: none;
+}
+
+QWidget {
+    border: none;;
+}
+
+QWidget {
+    ;border: none
+}
+
+QWidget {
+    ;border: none;
+}

@@ -52,6 +52,7 @@ GT_SIGN=">"
 
 <DECLARATION> {
     {IDENTIFIER}                                 {return QSSTypes.IDENTIFIER;}
+    {SEMICOLON}                                  {return QSSTypes.SEMICOLON;}
     {COLON}                                      {yybegin(EXPRESSION); return QSSTypes.COLON;}
     {CLOSE_BRACE}                                {yybegin(YYINITIAL); return QSSTypes.CLOSE_BRACE;}
 }

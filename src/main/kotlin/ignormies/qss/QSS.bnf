@@ -30,7 +30,7 @@ style_rule ::= selector_list declaration_block
 // #############################################################################
 
 selector_list ::= selector selector*
-private selector ::= universal_selector | property_selector | combinator_selector | simple_selector
+private selector ::= universal_selector | property_selector | class_selector | combinator_selector | simple_selector
 
 // Universal selector
 universal_selector ::= ASTERISK
@@ -41,6 +41,9 @@ simple_selector ::= IDENTIFIER
 // Property selector
 property_selector ::= simple_selector OPEN_BRACKET attribute CLOSE_BRACKET
 attribute ::= IDENTIFIER EQ_SIGN (IDENTIFIER | STRING)
+
+// Class selector
+class_selector ::= PERIOD IDENTIFIER
 
 // Combinator selector
 private combinator_selector ::= child_selector | adjacent_selector

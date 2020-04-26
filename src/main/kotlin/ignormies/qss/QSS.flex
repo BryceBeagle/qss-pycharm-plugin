@@ -22,6 +22,7 @@ ANGLE={NUMBER}(deg|rad|grad)
 
 ASTERISK="*"
 COLON=":"
+PERIOD="."
 SEMICOLON=";"
 OPEN_BRACE="{"
 CLOSE_BRACE="}"
@@ -40,6 +41,7 @@ GT_SIGN=">"
 <YYINITIAL> {
     {IDENTIFIER}                                 {return QSSTypes.IDENTIFIER;}
     {ASTERISK}                                   {return QSSTypes.ASTERISK;}
+    {PERIOD}                                     {return QSSTypes.PERIOD;}
     {OPEN_BRACE}                                 {yybegin(DECLARATION); return QSSTypes.OPEN_BRACE;}
     {PLUS_SIGN}                                  {return QSSTypes.PLUS_SIGN;}
     {GT_SIGN}                                    {return QSSTypes.GT_SIGN;}
